@@ -139,15 +139,15 @@ def calc_adx(high: pd.Series, low: pd.Series, close: pd.Series,
     return adx, plus_di, minus_di
 
 
-def _get_htf_trend(ticker: str) -> int:
+def _get_htf_trend(ticker: str, interval: str = "1h", period: str = "30d") -> int:
     """
-    Fetch 1-hour bars and return the higher-timeframe trend.
+    Fetch higher-timeframe bars and return trend direction.
       +1 = bullish  (EMA20 > EMA50 and RSI > 50)
       -1 = bearish  (EMA20 < EMA50 and RSI < 50)
        0 = neutral / unclear
     """
     try:
-        df = yf.download(ticker, period="30d", interval="1h",
+        df = yf.download(ticker, period=period, interval=interval,
                          progress=False, auto_adjust=True)
         if df is None or len(df) < 50:
             return 0
@@ -157,37 +157,107 @@ def _get_htf_trend(ticker: str) -> int:
         e20 = _ema(c, 20).iloc[-1]
         e50 = _ema(c, 50).iloc[-1]
         rsi = calc_rsi(c).iloc[-1]
-        if e20 > e50 and rsi > 50:
+        if e20 > e50 and rsi > 52:
             return 1
-        if e20 < e50 and rsi < 50:
+        if e20 < e50 and rsi < 48:
             return -1
         return 0
     except Exception:
         return 0
 
 
+# Forex pairs and which UTC hour ranges they are liquid (start, end)
+_FOREX_SESSIONS = {
+    "EURUSD=X": [(7, 17)],   # London + NY overlap
+    "GBPUSD=X": [(7, 17)],
+    "USDJPY=X": [(0, 9), (12, 21)],   # Tokyo + NY
+    "AUDUSD=X": [(0, 9), (12, 17)],   # Sydney/Tokyo + NY
+    "USDCAD=X": [(12, 21)],           # NY session only
+    "USDCHF=X": [(7, 17)],
+}
+
+def _in_active_session(ticker: str) -> bool:
+    """Return False for forex pairs outside their liquid trading session."""
+    sessions = _FOREX_SESSIONS.get(ticker)
+    if not sessions:
+        return True   # crypto / indices / commodities trade 24/7
+    hour = datetime.utcnow().hour
+    return any(start <= hour < end for start, end in sessions)
+
+
+def _detect_candle_pattern(open_: pd.Series, high: pd.Series,
+                            low: pd.Series, close: pd.Series) -> int:
+    """
+    Detect the last completed candle's reversal pattern.
+      +1 = bullish pattern (hammer, bullish engulfing)
+      -1 = bearish pattern (shooting star, bearish engulfing)
+       0 = no pattern
+    """
+    if len(close) < 3:
+        return 0
+    o  = float(open_.iloc[-1]);  o1 = float(open_.iloc[-2])
+    h  = float(high.iloc[-1]);   h1 = float(high.iloc[-2])
+    l  = float(low.iloc[-1]);    l1 = float(low.iloc[-2])
+    c  = float(close.iloc[-1]);  c1 = float(close.iloc[-2])
+    body     = abs(c - o)
+    rng      = h - l if h != l else 1e-10
+    body_pct = body / rng
+
+    # Hammer / bullish pin bar: small body at top, long lower wick
+    lower_wick = min(o, c) - l
+    if lower_wick > body * 2 and body_pct < 0.35 and c > o:
+        return 1
+
+    # Shooting star / bearish pin bar: small body at bottom, long upper wick
+    upper_wick = h - max(o, c)
+    if upper_wick > body * 2 and body_pct < 0.35 and c < o:
+        return -1
+
+    # Bullish engulfing
+    prev_bearish = c1 < o1
+    cur_bullish  = c > o
+    if prev_bearish and cur_bullish and o <= c1 and c >= o1:
+        return 1
+
+    # Bearish engulfing
+    prev_bullish = c1 > o1
+    cur_bearish  = c < o
+    if prev_bullish and cur_bearish and o >= c1 and c <= o1:
+        return -1
+
+    return 0
+
+
 # ─── Signal Engine ────────────────────────────────────────────────────────────
 
-# Minimum indicators that must agree before a signal is sent
-MIN_INDICATORS = 3
+# Minimum 5-min indicators that must agree
+MIN_INDICATORS = 2
 
 def analyze_asset(ticker: str, display_name: str, expiry: str) -> dict | None:
     """
-    High-accuracy signal engine with three layers of filtering:
+    High-accuracy signal engine — five layers of filtering:
 
-    Layer 1 — Higher-timeframe trend (1h EMA20/50 + RSI)
-      Only trades aligned with the 1h trend are allowed.
+    Gate 0 — Active session check
+      Forex pairs only trade during their liquid market hours.
 
-    Layer 2 — Five 5-min indicator families
-      RSI, EMA crossover/stack, MACD histogram flip, Bollinger Bands,
-      Stochastic K/D.  Strict thresholds — weak zones ignored.
+    Layer 1 — Dual higher-timeframe trend (15m + 1h)
+      Both intermediate and macro trend must align with signal.
 
-    Layer 3 — Consensus gate
-      Signal only fires when ≥ MIN_INDICATORS (3) agree AND the
-      ADX confirms the market is actually trending (ADX > 18).
+    Layer 2 — Five 5-min indicators (RSI, EMA, MACD, BB, Stochastic)
+      Strict thresholds; requires ≥ MIN_INDICATORS (3) agreeing.
 
-    Fewer signals, much higher accuracy.
+    Layer 3 — ADX trend strength + directional index confirmation
+      ADX > 20, DI must agree with signal direction.
+
+    Layer 4 — Volatility floor + candlestick pattern
+      ATR must be sufficient (not a dead market); last candle must
+      show a reversal or continuation pattern aligned with signal.
     """
+    # ── Gate 0: active session ───────────────────────────────────────────────
+    if not _in_active_session(ticker):
+        log.debug(f"{display_name}: outside active session — skip")
+        return None
+
     # ── Fetch 5-min data ────────────────────────────────────────────────────
     try:
         raw = yf.download(ticker, period=CANDLE_PERIOD, interval=CANDLE_INTERVAL,
@@ -204,11 +274,13 @@ def analyze_asset(ticker: str, display_name: str, expiry: str) -> dict | None:
     close = raw["Close"].dropna()
     high  = raw["High"].dropna()
     low   = raw["Low"].dropna()
+    open_ = raw["Open"].dropna()
     if len(close) < 60:
         return None
 
-    # ── Layer 1: higher-timeframe trend ─────────────────────────────────────
-    htf = _get_htf_trend(ticker)   # +1 bull, -1 bear, 0 neutral
+    # ── Layer 1: dual higher-timeframe trend (15m + 1h) ─────────────────────
+    htf_15m = _get_htf_trend(ticker, interval="15m", period="5d")
+    htf_1h  = _get_htf_trend(ticker, interval="1h",  period="30d")
 
     # ── Indicators ──────────────────────────────────────────────────────────
     rsi                  = calc_rsi(close)
@@ -240,25 +312,44 @@ def analyze_asset(ticker: str, display_name: str, expiry: str) -> dict | None:
     cur_pdi     = v(plus_di)
     cur_mdi     = v(minus_di)
 
+    # ── Layer 4a: volatility floor ───────────────────────────────────────────
+    atr_series  = calc_atr(high, low, close)
+    cur_atr     = v(atr_series)
+    atr_avg     = float(atr_series.iloc[-20:].mean())
+    # Require current ATR to be at least 60% of the 20-bar average
+    # (filters out dead, no-movement markets)
+    if cur_atr < atr_avg * 0.60:
+        log.debug(f"{display_name}: ATR {cur_atr:.5f} too low vs avg {atr_avg:.5f} — skip")
+        return None
+
+    # ── Layer 4b: candlestick pattern ────────────────────────────────────────
+    candle_pattern = _detect_candle_pattern(open_, high, low, close)
+
     buy_votes  = []
     sell_votes = []
 
-    # ── 1. RSI — strict thresholds only ─────────────────────────────────────
-    if cur_rsi < 25:
-        buy_votes.append(f"RSI {cur_rsi:.1f} — deeply oversold")
-    elif cur_rsi < 32:
-        buy_votes.append(f"RSI {cur_rsi:.1f} — oversold")
-    elif cur_rsi > 75:
-        sell_votes.append(f"RSI {cur_rsi:.1f} — deeply overbought")
-    elif cur_rsi > 68:
-        sell_votes.append(f"RSI {cur_rsi:.1f} — overbought")
-    # RSI 50-line cross (momentum confirmation)
-    if prev_rsi < 50 <= cur_rsi:
-        buy_votes.append(f"RSI crossed 50 upward ({cur_rsi:.1f})")
-    elif prev_rsi > 50 >= cur_rsi:
-        sell_votes.append(f"RSI crossed 50 downward ({cur_rsi:.1f})")
+    # Switch between trend-following and mean-reversion logic based on ADX
+    trending = cur_adx >= 22
 
-    # ── 2. EMA — crossover OR aligned stack ─────────────────────────────────
+    # ── 1. RSI ───────────────────────────────────────────────────────────────
+    if trending:
+        # In a trend: RSI above/below 50 shows momentum direction
+        if cur_rsi > 55:
+            buy_votes.append(f"RSI {cur_rsi:.1f} — bullish momentum")
+        elif cur_rsi < 45:
+            sell_votes.append(f"RSI {cur_rsi:.1f} — bearish momentum")
+        if prev_rsi < 50 <= cur_rsi:
+            buy_votes.append(f"RSI crossed 50 upward ({cur_rsi:.1f})")
+        elif prev_rsi > 50 >= cur_rsi:
+            sell_votes.append(f"RSI crossed 50 downward ({cur_rsi:.1f})")
+    else:
+        # Ranging market: use classic overbought/oversold levels
+        if cur_rsi < 30:
+            buy_votes.append(f"RSI {cur_rsi:.1f} — oversold")
+        elif cur_rsi > 70:
+            sell_votes.append(f"RSI {cur_rsi:.1f} — overbought")
+
+    # ── 2. EMA — crossover + stack ──────────────────────────────────────────
     if cur_e9 > cur_e21 and prev_e9 <= prev_e21:
         buy_votes.append("EMA 9 crossed above EMA 21")
     elif cur_e9 < cur_e21 and prev_e9 >= prev_e21:
@@ -268,38 +359,46 @@ def analyze_asset(ticker: str, display_name: str, expiry: str) -> dict | None:
     elif cur_e9 < cur_e21 < cur_e50:
         sell_votes.append("EMA stack bearish (9 < 21 < 50)")
 
-    # ── 3. MACD — histogram flip only (strongest signal) ────────────────────
+    # ── 3. MACD ──────────────────────────────────────────────────────────────
     if cur_hist > 0 and prev_hist <= 0:
         buy_votes.append("MACD histogram flipped positive")
     elif cur_hist < 0 and prev_hist >= 0:
         sell_votes.append("MACD histogram flipped negative")
     elif cur_hist > 0 and cur_macdl > cur_macds:
-        buy_votes.append(f"MACD bullish momentum")
+        buy_votes.append("MACD bullish momentum")
     elif cur_hist < 0 and cur_macdl < cur_macds:
-        sell_votes.append(f"MACD bearish momentum")
+        sell_votes.append("MACD bearish momentum")
 
-    # ── 4. Bollinger Bands — band touch + squeeze breakout ──────────────────
+    # ── 4. Bollinger Bands ───────────────────────────────────────────────────
     if cur_bb_mid > 0:
         bb_range = cur_bb_up - cur_bb_lo
         pct_b = (cur_close - cur_bb_lo) / bb_range if bb_range > 0 else 0.5
-        if cur_close <= cur_bb_lo:
-            buy_votes.append(f"Price at lower Bollinger Band")
-        elif cur_close >= cur_bb_up:
-            sell_votes.append(f"Price at upper Bollinger Band")
-        elif pct_b < 0.20:
-            buy_votes.append(f"%B {pct_b:.2f} — hugging lower band")
-        elif pct_b > 0.80:
-            sell_votes.append(f"%B {pct_b:.2f} — hugging upper band")
+        if trending:
+            # In a trend: position relative to midline
+            if pct_b > 0.55:
+                buy_votes.append(f"Price above BB midline (%B={pct_b:.2f})")
+            elif pct_b < 0.45:
+                sell_votes.append(f"Price below BB midline (%B={pct_b:.2f})")
+        else:
+            # Ranging: band touch signals
+            if cur_close <= cur_bb_lo or pct_b < 0.15:
+                buy_votes.append("Price at/near lower Bollinger Band")
+            elif cur_close >= cur_bb_up or pct_b > 0.85:
+                sell_votes.append("Price at/near upper Bollinger Band")
 
-    # ── 5. Stochastic — extreme zones + K/D cross ───────────────────────────
-    if cur_stk < 15 and cur_std < 20:
-        buy_votes.append(f"Stochastic deeply oversold (K={cur_stk:.1f})")
-    elif cur_stk < 25 and cur_std < 25:
-        buy_votes.append(f"Stochastic oversold (K={cur_stk:.1f})")
-    elif cur_stk > 85 and cur_std > 80:
-        sell_votes.append(f"Stochastic deeply overbought (K={cur_stk:.1f})")
-    elif cur_stk > 75 and cur_std > 75:
-        sell_votes.append(f"Stochastic overbought (K={cur_stk:.1f})")
+    # ── 5. Stochastic ────────────────────────────────────────────────────────
+    if trending:
+        # In a trend: stochastic direction
+        if cur_stk > 50 and cur_stk > cur_std:
+            buy_votes.append(f"Stochastic bullish (K={cur_stk:.1f})")
+        elif cur_stk < 50 and cur_stk < cur_std:
+            sell_votes.append(f"Stochastic bearish (K={cur_stk:.1f})")
+    else:
+        # Ranging: extremes + K/D cross
+        if cur_stk < 20 and cur_std < 25:
+            buy_votes.append(f"Stochastic oversold (K={cur_stk:.1f})")
+        elif cur_stk > 80 and cur_std > 75:
+            sell_votes.append(f"Stochastic overbought (K={cur_stk:.1f})")
     if cur_stk > cur_std and prev_stk <= prev_std and cur_stk < 80:
         buy_votes.append(f"Stochastic bullish K/D cross (K={cur_stk:.1f})")
     elif cur_stk < cur_std and prev_stk >= prev_std and cur_stk > 20:
@@ -324,42 +423,60 @@ def analyze_asset(ticker: str, display_name: str, expiry: str) -> dict | None:
         reasons   = sell_votes
         dominant  = n_sell
 
-    # ── Layer 3: ADX trend-strength filter ──────────────────────────────────
-    # Skip if market is too choppy (ADX < 18)
-    if cur_adx < 18:
+    # ── Layer 3: ADX trend-strength + DI confirmation ───────────────────────
+    if cur_adx < 15:
         log.debug(f"{display_name}: ADX {cur_adx:.1f} — too choppy, skipping")
         return None
-
-    # ADX directional confirmation — DI must agree with signal
     if direction == "BUY"  and cur_mdi > cur_pdi:
-        return None   # +DI should dominate for a BUY
-    if direction == "SELL" and cur_pdi > cur_mdi:
-        return None   # -DI should dominate for a SELL
-
-    # ── Higher-timeframe alignment ───────────────────────────────────────────
-    htf_label = ""
-    if htf == 1 and direction == "BUY":
-        htf_label = "✅ 1h trend: bullish"
-        reasons   = [htf_label] + reasons
-    elif htf == -1 and direction == "SELL":
-        htf_label = "✅ 1h trend: bearish"
-        reasons   = [htf_label] + reasons
-    elif htf != 0:
-        # Signal opposes the higher-timeframe trend — reject
-        log.debug(f"{display_name}: signal vs HTF trend — skipping")
         return None
-    # htf == 0 (neutral) → allow but no bonus
+    if direction == "SELL" and cur_pdi > cur_mdi:
+        return None
+
+    # ── Dual higher-timeframe alignment (15m + 1h) ──────────────────────────
+    htf_labels = []
+    dir_val    = 1 if direction == "BUY" else -1
+
+    # 1h must align or be neutral
+    if htf_1h != 0 and htf_1h != dir_val:
+        log.debug(f"{display_name}: 1h HTF opposes signal — skipping")
+        return None
+    if htf_1h == dir_val:
+        lbl = "✅ 1h trend aligned"
+        htf_labels.append(lbl)
+
+    # 15m must align or be neutral
+    if htf_15m != 0 and htf_15m != dir_val:
+        log.debug(f"{display_name}: 15m HTF opposes signal — skipping")
+        return None
+    if htf_15m == dir_val:
+        lbl = "✅ 15m trend aligned"
+        htf_labels.append(lbl)
+
+    # Require at least one HTF to actively confirm (not both neutral)
+    if not htf_labels:
+        log.debug(f"{display_name}: no HTF confirmation — skipping")
+        return None
+
+    reasons = htf_labels + reasons
+
+    # ── Candlestick pattern bonus / filter ───────────────────────────────────
+    if candle_pattern == dir_val:
+        reasons = ["✅ Reversal candle confirmed"] + reasons
+    elif candle_pattern == -dir_val:
+        # Opposing candle — slight confidence penalty, not a hard block
+        log.debug(f"{display_name}: candle pattern opposes signal — confidence penalised")
 
     # ── Confidence scoring ───────────────────────────────────────────────────
-    total      = n_buy + n_sell
-    raw_conf   = dominant / max(total, 1)
-    # Bonus: +8% per indicator over the minimum, +5% for HTF alignment
-    bonus      = 0.08 * max(dominant - MIN_INDICATORS, 0)
-    if htf_label:
-        bonus += 0.05
-    # Bonus for strong ADX
+    total    = n_buy + n_sell
+    raw_conf = dominant / max(total, 1)
+    bonus    = 0.07 * max(dominant - MIN_INDICATORS, 0)   # +7% per extra indicator
+    bonus   += 0.05 * len(htf_labels)                     # +5% per HTF confirming
+    if candle_pattern == dir_val:
+        bonus += 0.06                                      # +6% for pattern match
+    elif candle_pattern == -dir_val:
+        bonus -= 0.05                                      # -5% penalty for opposing candle
     if cur_adx > 30:
-        bonus += 0.05
+        bonus += 0.04
     confidence = int(min((raw_conf + bonus) * 100, 97))
 
     if confidence < MIN_CONFIDENCE:
