@@ -1,0 +1,1179 @@
+[
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 1.3198567628860474,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00004)"
+    ],
+    "rsi": 45.26441505526157,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 0.6850723028182983,
+    "reasons": [
+      "MACD bullish (histogram +0.00009)"
+    ],
+    "rsi": 50.95531199697275,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7993000149726868,
+    "reasons": [
+      "RSI 68.6 \u2014 overbought",
+      "Price \u2265 upper BB (0.79930 \u2265 0.79911)",
+      "Stochastic overbought (K=100.0, D=89.8)"
+    ],
+    "rsi": 68.62095917225754,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 67622.9765625,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +21.62951)"
+    ],
+    "rsi": 51.53583739905532,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 2062.042236328125,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.51690)"
+    ],
+    "rsi": 49.25002936116175,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 102.5999984741211,
+    "reasons": [
+      "MACD bullish (histogram +0.03057)",
+      "%B = 0.13 \u2014 near lower band",
+      "Stochastic oversold (K=14.1, D=18.5)"
+    ],
+    "rsi": 40.81231128527449,
+    "timestamp": "2026-03-31 06:01 UTC",
+    "scan_num": 1
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 1.3197417259216309,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00003)"
+    ],
+    "rsi": 43.898536329002226,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "USDCAD=X",
+    "name": "USD/CAD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.3933199644088745,
+    "reasons": [
+      "EMA 9 crossed above EMA 21 (bullish cross)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "Price crossed above BB midline"
+    ],
+    "rsi": 58.83097531896308,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7992200255393982,
+    "reasons": [
+      "RSI 67.0 \u2014 overbought",
+      "Price \u2265 upper BB (0.79922 \u2265 0.79908)",
+      "Stochastic overbought (K=87.4, D=85.6)"
+    ],
+    "rsi": 67.00307603746904,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 67632.703125,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +19.82565)"
+    ],
+    "rsi": 52.145506270379855,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2062.581298828125,
+    "reasons": [
+      "RSI crossed 50 upward (50.2)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.40551)"
+    ],
+    "rsi": 50.18127720359041,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "15 min",
+    "entry": 4607.0,
+    "reasons": [
+      "%B = 0.90 \u2014 near upper band",
+      "Stochastic overbought (K=90.7, D=91.8)",
+      "Stochastic bearish K/D cross (K=90.7)"
+    ],
+    "rsi": 58.33293061982401,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 102.58999633789062,
+    "reasons": [
+      "MACD bullish (histogram +0.02993)",
+      "%B = 0.12 \u2014 near lower band",
+      "Stochastic oversold (K=13.1, D=18.1)"
+    ],
+    "rsi": 40.652488593728776,
+    "timestamp": "2026-03-31 06:02 UTC",
+    "scan_num": 2
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3201111555099487,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00006)"
+    ],
+    "rsi": 48.60903025818201,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7991999983787537,
+    "reasons": [
+      "RSI 66.6 \u2014 overbought",
+      "Price \u2265 upper BB (0.79920 \u2265 0.79907)",
+      "Stochastic overbought (K=85.1, D=84.8)"
+    ],
+    "rsi": 66.57154649732948,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 67627.4140625,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +19.48811)"
+    ],
+    "rsi": 51.815899303196545,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2062.526611328125,
+    "reasons": [
+      "RSI crossed 50 upward (50.1)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.40202)"
+    ],
+    "rsi": 50.088363398917366,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "15 min",
+    "entry": 4605.10009765625,
+    "reasons": [
+      "%B = 0.85 \u2014 near upper band",
+      "Stochastic overbought (K=85.2, D=90.0)",
+      "Stochastic bearish K/D cross (K=85.2)"
+    ],
+    "rsi": 56.97887371214968,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 102.69999694824219,
+    "reasons": [
+      "MACD bullish (histogram +0.03695)",
+      "%B = 0.24 \u2014 near lower band",
+      "Stochastic bullish K/D cross (K=24.2)"
+    ],
+    "rsi": 42.77755822849417,
+    "timestamp": "2026-03-31 06:03 UTC",
+    "scan_num": 3
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 1.3200535774230957,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00005)"
+    ],
+    "rsi": 47.8094615029461,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 0.6851473450660706,
+    "reasons": [
+      "MACD bullish (histogram +0.00010)"
+    ],
+    "rsi": 52.23245688835316,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "USDCAD=X",
+    "name": "USD/CAD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.3933199644088745,
+    "reasons": [
+      "EMA 9 crossed above EMA 21 (bullish cross)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "Price crossed above BB midline"
+    ],
+    "rsi": 58.83097531896308,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7991999983787537,
+    "reasons": [
+      "RSI 66.6 \u2014 overbought",
+      "Price \u2265 upper BB (0.79920 \u2265 0.79907)",
+      "Stochastic overbought (K=85.1, D=84.8)"
+    ],
+    "rsi": 66.57154649732948,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 67590.828125,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +17.15328)"
+    ],
+    "rsi": 49.453418478765954,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 2060.552490234375,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.27603)"
+    ],
+    "rsi": 46.830798111252804,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 4601.5,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.64623)"
+    ],
+    "rsi": 54.578241320758686,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 102.8499984741211,
+    "reasons": [
+      "MACD bullish (histogram +0.04652)",
+      "Stochastic bullish K/D cross (K=39.4)"
+    ],
+    "rsi": 45.96353391008524,
+    "timestamp": "2026-03-31 06:04 UTC",
+    "scan_num": 4
+  },
+  {
+    "ticker": "EURUSD=X",
+    "name": "EUR/USD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.1465259790420532,
+    "reasons": [
+      "RSI 31.8 \u2014 oversold",
+      "Price \u2264 lower BB (1.14653 \u2264 1.14656)",
+      "Stochastic oversold (K=12.5, D=12.5)"
+    ],
+    "rsi": 31.79829488145154,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3199577331542969,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00002)"
+    ],
+    "rsi": 46.440077056458236,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "USDJPY=X",
+    "name": "USD/JPY",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 159.63499450683594,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "%B = 0.78 \u2014 near upper band",
+      "Stochastic overbought (K=80.1, D=82.0)",
+      "Stochastic bearish K/D cross (K=80.1)"
+    ],
+    "rsi": 53.36405485763596,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 0.6851473450660706,
+    "reasons": [
+      "MACD bullish (histogram +0.00010)"
+    ],
+    "rsi": 52.23245688835316,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "USDCAD=X",
+    "name": "USD/CAD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 1.3930000066757202,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00001)"
+    ],
+    "rsi": 52.45762284564548,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7991700172424316,
+    "reasons": [
+      "RSI 65.7 \u2014 overbought",
+      "Price \u2265 upper BB (0.79917 \u2265 0.79915)",
+      "Stochastic overbought (K=81.6, D=81.6)"
+    ],
+    "rsi": 65.66284873041224,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 2058.818603515625,
+    "reasons": [
+      "EMA 9 crossed below EMA 21 (bearish cross)",
+      "Price crossed below BB midline"
+    ],
+    "rsi": 44.29820465776009,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4599.7001953125,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.33812)"
+    ],
+    "rsi": 53.35360201630335,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 102.63999938964844,
+    "reasons": [
+      "MACD bullish (histogram +0.02859)",
+      "%B = 0.19 \u2014 near lower band"
+    ],
+    "rsi": 42.14799940161551,
+    "timestamp": "2026-03-31 06:05 UTC",
+    "scan_num": 5
+  },
+  {
+    "ticker": "EURUSD=X",
+    "name": "EUR/USD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.1466574668884277,
+    "reasons": [
+      "RSI 34.2 \u2014 oversold",
+      "%B = 0.06 \u2014 near lower band",
+      "Stochastic bullish K/D cross (K=25.0)"
+    ],
+    "rsi": 34.21193920525843,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.320199966430664,
+    "reasons": [
+      "RSI crossed 50 upward (50.1)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00004)",
+      "Price crossed above BB midline",
+      "Stochastic bullish K/D cross (K=50.5)"
+    ],
+    "rsi": 50.05869560013912,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "USDJPY=X",
+    "name": "USD/JPY",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 159.63999938964844,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "%B = 0.81 \u2014 near upper band",
+      "Stochastic overbought (K=82.6, D=82.9)",
+      "Stochastic bearish K/D cross (K=82.6)"
+    ],
+    "rsi": 54.24899177017741,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7992100119590759,
+    "reasons": [
+      "RSI 66.8 \u2014 overbought",
+      "Price \u2265 upper BB (0.79921 \u2265 0.79916)",
+      "Stochastic overbought (K=86.2, D=83.2)"
+    ],
+    "rsi": 66.8384282101365,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 2059.0439453125,
+    "reasons": [
+      "EMA 9 crossed below EMA 21 (bearish cross)",
+      "Price crossed below BB midline"
+    ],
+    "rsi": 44.611752806407694,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4599.39990234375,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.31895)"
+    ],
+    "rsi": 53.156935010390015,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 102.63999938964844,
+    "reasons": [
+      "MACD bullish (histogram +0.02859)",
+      "%B = 0.19 \u2014 near lower band"
+    ],
+    "rsi": 42.14799940161551,
+    "timestamp": "2026-03-31 06:06 UTC",
+    "scan_num": 6
+  },
+  {
+    "ticker": "EURUSD=X",
+    "name": "EUR/USD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.1465259790420532,
+    "reasons": [
+      "RSI 31.8 \u2014 oversold",
+      "Price \u2264 lower BB (1.14653 \u2264 1.14656)",
+      "Stochastic oversold (K=12.5, D=12.5)"
+    ],
+    "rsi": 31.79829488145154,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3201302289962769,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00003)",
+      "Price crossed above BB midline",
+      "Stochastic bullish K/D cross (K=46.5)"
+    ],
+    "rsi": 49.01188198565754,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "USDJPY=X",
+    "name": "USD/JPY",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 159.64500427246094,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "%B = 0.84 \u2014 near upper band",
+      "Stochastic overbought (K=85.1, D=83.7)"
+    ],
+    "rsi": 55.163773442685965,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7993299961090088,
+    "reasons": [
+      "RSI 69.4 \u2014 overbought",
+      "Price \u2265 upper BB (0.79933 \u2265 0.79919)",
+      "Stochastic overbought (K=100.0, D=87.8)"
+    ],
+    "rsi": 69.39978214963591,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 67609.1640625,
+    "reasons": [
+      "RSI crossed 50 upward (50.8)",
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +13.40118)",
+      "Price crossed above BB midline",
+      "Stochastic bullish K/D cross (K=70.3)"
+    ],
+    "rsi": 50.78235824981939,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2061.082275390625,
+    "reasons": [
+      "MACD bullish (histogram +0.09241)",
+      "Price crossed above BB midline",
+      "Stochastic bullish K/D cross (K=52.4)"
+    ],
+    "rsi": 48.18444586347001,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4598.5,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.26152)"
+    ],
+    "rsi": 52.576161424831895,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 102.69999694824219,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "Stochastic bearish K/D cross (K=24.2)"
+    ],
+    "rsi": 43.14515509874098,
+    "timestamp": "2026-03-31 06:07 UTC",
+    "scan_num": 7
+  },
+  {
+    "ticker": "EURUSD=X",
+    "name": "EUR/USD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.1463946104049683,
+    "reasons": [
+      "RSI 29.7 \u2014 oversold",
+      "Price \u2264 lower BB (1.14639 \u2264 1.14652)",
+      "Stochastic oversold (K=0.0, D=8.3)"
+    ],
+    "rsi": 29.70454604628455,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3197625875473022,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00001)"
+    ],
+    "rsi": 43.88101490841964,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "USDJPY=X",
+    "name": "USD/JPY",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 159.63099670410156,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "%B = 0.75 \u2014 near upper band",
+      "Stochastic bearish K/D cross (K=78.1)"
+    ],
+    "rsi": 52.67765915601551,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 0.6848329901695251,
+    "reasons": [
+      "RSI crossed 50 downward (46.8)",
+      "Price crossed below BB midline"
+    ],
+    "rsi": 46.75331254869306,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7992100119590759,
+    "reasons": [
+      "RSI 66.8 \u2014 overbought",
+      "Price \u2265 upper BB (0.79921 \u2265 0.79916)",
+      "Stochastic overbought (K=84.3, D=82.5)"
+    ],
+    "rsi": 66.8384282101365,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "BTC-USD",
+    "name": "BTC/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 67579.4609375,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +11.50559)",
+      "Price crossed above BB midline"
+    ],
+    "rsi": 48.958619336064345,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2060.156005859375,
+    "reasons": [
+      "MACD bullish (histogram +0.03330)"
+    ],
+    "rsi": 46.61978110797118,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4597.2001953125,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.17857)"
+    ],
+    "rsi": 51.7593562028105,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "CL=F",
+    "name": "Oil (WTI)",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "15 min",
+    "entry": 102.62999725341797,
+    "reasons": [
+      "MACD bullish (histogram +0.02795)",
+      "%B = 0.18 \u2014 near lower band"
+    ],
+    "rsi": 41.98622976672431,
+    "timestamp": "2026-03-31 06:08 UTC",
+    "scan_num": 8
+  },
+  {
+    "ticker": "EURUSD=X",
+    "name": "EUR/USD",
+    "direction": "BUY",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.1465259790420532,
+    "reasons": [
+      "RSI 31.8 \u2014 oversold",
+      "Price \u2264 lower BB (1.14653 \u2264 1.14656)",
+      "Stochastic oversold (K=12.5, D=12.5)"
+    ],
+    "rsi": 31.79829488145154,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3198027610778809,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00001)"
+    ],
+    "rsi": 44.384516228435764,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "USDJPY=X",
+    "name": "USD/JPY",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 159.6230010986328,
+    "reasons": [
+      "EMA stack bearish (9 < 21 < 50)",
+      "Stochastic bearish K/D cross (K=74.1)"
+    ],
+    "rsi": 51.356511838035665,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 0.6848329901695251,
+    "reasons": [
+      "RSI crossed 50 downward (46.8)",
+      "Price crossed below BB midline"
+    ],
+    "rsi": 46.75331254869306,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "USDCAD=X",
+    "name": "USD/CAD",
+    "direction": "BUY",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 1.393470048904419,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.00004)"
+    ],
+    "rsi": 60.91206938112114,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.7992100119590759,
+    "reasons": [
+      "RSI 66.8 \u2014 overbought",
+      "Price \u2265 upper BB (0.79921 \u2265 0.79916)",
+      "Stochastic overbought (K=84.3, D=82.5)"
+    ],
+    "rsi": 66.8384282101365,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2058.41748046875,
+    "reasons": [
+      "MACD histogram flipped negative"
+    ],
+    "rsi": 43.685989575298436,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "SOL-USD",
+    "name": "SOL/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 83.4549331665039,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.04632)"
+    ],
+    "rsi": 54.48874778447531,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4596.5,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.13389)"
+    ],
+    "rsi": 51.32978007971567,
+    "timestamp": "2026-03-31 06:09 UTC",
+    "scan_num": 9
+  },
+  {
+    "ticker": "GBPUSD=X",
+    "name": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "5 min",
+    "entry": 1.3200832605361938,
+    "reasons": [
+      "MACD bullish (histogram +0.00001)",
+      "Price crossed above BB midline",
+      "Stochastic bullish K/D cross (K=43.8)"
+    ],
+    "rsi": 48.80180048948797,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "AUDUSD=X",
+    "name": "AUD/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "expiry": "5 min",
+    "entry": 0.6845892071723938,
+    "reasons": [
+      "EMA 9 crossed below EMA 21 (bearish cross)",
+      "EMA stack bearish (9 < 21 < 50)"
+    ],
+    "rsi": 42.98731149456843,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "USDCAD=X",
+    "name": "USD/CAD",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 1.393530011177063,
+    "reasons": [
+      "%B = 0.95 \u2014 near upper band",
+      "Stochastic overbought (K=91.1, D=91.9)",
+      "Stochastic bearish K/D cross (K=91.1)"
+    ],
+    "rsi": 61.71201605620129,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "USDCHF=X",
+    "name": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "expiry": "5 min",
+    "entry": 0.799239993095398,
+    "reasons": [
+      "RSI 67.6 \u2014 overbought",
+      "Price \u2265 upper BB (0.79924 \u2265 0.79924)",
+      "Stochastic overbought (K=87.6, D=84.9)"
+    ],
+    "rsi": 67.56892007063156,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "ETH-USD",
+    "name": "ETH/USD",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 2059.12939453125,
+    "reasons": [
+      "MACD histogram flipped negative"
+    ],
+    "rsi": 44.77138969612986,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "SOL-USD",
+    "name": "SOL/USD",
+    "direction": "BUY",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 83.46260833740234,
+    "reasons": [
+      "EMA stack bullish (9 > 21 > 50)",
+      "MACD bullish (histogram +0.04681)"
+    ],
+    "rsi": 54.922012850256,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  },
+  {
+    "ticker": "GC=F",
+    "name": "Gold",
+    "direction": "SELL",
+    "confidence": 97,
+    "expiry": "15 min",
+    "entry": 4591.39990234375,
+    "reasons": [
+      "RSI crossed 50 downward (48.2)",
+      "MACD histogram flipped negative",
+      "Price crossed below BB midline"
+    ],
+    "rsi": 48.17173616694838,
+    "timestamp": "2026-03-31 06:10 UTC",
+    "scan_num": 10
+  }
+]
