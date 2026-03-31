@@ -338,7 +338,11 @@ def format_signal(sig: dict) -> str:
     else:
         entry_str = f"{entry:.5f}"
 
-    reasons_text = "\n".join(f"  • {r}" for r in sig["reasons"])
+    # Escape < > & so Telegram HTML parser doesn't choke on indicator text
+    def _esc(s: str) -> str:
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    reasons_text = "\n".join(f"  • {_esc(r)}" for r in sig["reasons"])
 
     return (
         f"{icon} <b>{sig['name']}  —  {action}</b>\n"
