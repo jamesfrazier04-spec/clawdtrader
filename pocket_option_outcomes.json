@@ -1,0 +1,62 @@
+[
+  {
+    "asset": "EUR/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "entry": 1.1469204425811768,
+    "exit": 1.1469204425811768,
+    "pct_move": 0.0,
+    "result": "LOSS",
+    "expiry": "5 min",
+    "signal_time": "2026-03-31 06:14 UTC",
+    "exit_time": "2026-03-31 06:19 UTC"
+  },
+  {
+    "asset": "GBP/USD",
+    "direction": "BUY",
+    "confidence": 86,
+    "entry": 1.319994330406189,
+    "exit": 1.3195345401763916,
+    "pct_move": -0.0348,
+    "result": "LOSS",
+    "expiry": "5 min",
+    "signal_time": "2026-03-31 06:14 UTC",
+    "exit_time": "2026-03-31 06:19 UTC"
+  },
+  {
+    "asset": "AUD/USD",
+    "direction": "SELL",
+    "confidence": 86,
+    "entry": 0.6847532987594604,
+    "exit": 0.6845563650131226,
+    "pct_move": -0.0288,
+    "result": "WIN",
+    "expiry": "5 min",
+    "signal_time": "2026-03-31 06:14 UTC",
+    "exit_time": "2026-03-31 06:19 UTC"
+  },
+  {
+    "asset": "USD/CAD",
+    "direction": "BUY",
+    "confidence": 86,
+    "entry": 1.3932000398635864,
+    "exit": 1.3936799764633179,
+    "pct_move": 0.0344,
+    "result": "WIN",
+    "expiry": "5 min",
+    "signal_time": "2026-03-31 06:14 UTC",
+    "exit_time": "2026-03-31 06:19 UTC"
+  },
+  {
+    "asset": "USD/CHF",
+    "direction": "SELL",
+    "confidence": 90,
+    "entry": 0.7992900013923645,
+    "exit": 0.7993999719619751,
+    "pct_move": 0.0138,
+    "result": "LOSS",
+    "expiry": "5 min",
+    "signal_time": "2026-03-31 06:14 UTC",
+    "exit_time": "2026-03-31 06:19 UTC"
+  }
+]
