@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — AI Content Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <header class="bg-blue-600 text-white py-4 shadow">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold">✍️ AI Content Studio — Dashboard</h1>
+      <a href="/" class="text-blue-200 hover:text-white text-sm underline">← Storefront</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-8">
+
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-4 mb-8">
+      <div class="bg-white border rounded-xl p-5 text-center shadow-sm">
+        <div class="text-3xl font-extrabold text-blue-600">${{ "%.2f" % total_revenue }}</div>
+        <div class="text-sm text-gray-500 mt-1">Total Revenue</div>
+      </div>
+      <div class="bg-white border rounded-xl p-5 text-center shadow-sm">
+        <div class="text-3xl font-extrabold text-green-600">{{ delivered }}</div>
+        <div class="text-sm text-gray-500 mt-1">Orders Delivered</div>
+      </div>
+      <div class="bg-white border rounded-xl p-5 text-center shadow-sm">
+        <div class="text-3xl font-extrabold text-gray-700">{{ total_orders }}</div>
+        <div class="text-sm text-gray-500 mt-1">Total Orders</div>
+      </div>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="bg-white border rounded-xl shadow-sm overflow-hidden">
+      <div class="px-6 py-4 border-b">
+        <h2 class="font-bold text-gray-800">Recent Orders</h2>
+      </div>
+      {% if orders %}
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+            <tr>
+              <th class="px-4 py-3 text-left">Order ID</th>
+              <th class="px-4 py-3 text-left">Service</th>
+              <th class="px-4 py-3 text-left">Topic</th>
+              <th class="px-4 py-3 text-left">Email</th>
+              <th class="px-4 py-3 text-right">Amount</th>
+              <th class="px-4 py-3 text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {% for order in orders %}
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-400 font-mono text-xs">{{ order.order_id[:8] }}…</td>
+              <td class="px-4 py-3 text-gray-700">{{ services.get(order.service_type, {}).get('name', order.service_type) }}</td>
+              <td class="px-4 py-3 text-gray-700 max-w-xs truncate">{{ order.topic }}</td>
+              <td class="px-4 py-3 text-gray-500">{{ order.email }}</td>
+              <td class="px-4 py-3 text-right font-semibold text-gray-800">
+                ${{ "%.2f" % (order.get('amount_paid', 0) / 100) }}
+              </td>
+              <td class="px-4 py-3 text-center">
+                {% if order.status == 'delivered' %}
+                  <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-semibold">Delivered</span>
+                {% elif order.status == 'generating' %}
+                  <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs font-semibold">Generating</span>
+                {% elif order.status.startswith('error') %}
+                  <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-semibold" title="{{ order.status }}">Error</span>
+                {% else %}
+                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-semibold">{{ order.status }}</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="text-center py-16 text-gray-400">
+        <div class="text-4xl mb-3">📭</div>
+        <p>No orders yet. Share your store link to start getting customers!</p>
+      </div>
+      {% endif %}
+    </div>
+
+  </main>
+</body>
+</html>

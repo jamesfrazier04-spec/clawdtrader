@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Studio — Instant AI-Written Content</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-5 shadow">
+    <div class="max-w-4xl mx-auto px-4 flex items-center gap-3">
+      <span class="text-3xl">✍️</span>
+      <div>
+        <h1 class="text-2xl font-bold leading-tight">AI Content Studio</h1>
+        <p class="text-blue-100 text-sm">Professional content delivered in minutes, not days.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-10">
+
+    <!-- Hero -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-extrabold text-gray-800 mb-3">High-Quality AI Content — Instantly</h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto">
+        Place your order, pay securely, and receive polished content in your inbox within minutes.
+        No waiting. No back-and-forth. Just great writing.
+      </p>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10" id="service-cards">
+      {% for key, svc in services.items() %}
+      <div
+        class="service-card border-2 rounded-xl p-5 cursor-pointer transition-all hover:border-blue-500 hover:shadow-md bg-white"
+        data-key="{{ key }}"
+        onclick="selectService('{{ key }}')"
+      >
+        <div class="flex justify-between items-start">
+          <h3 class="font-semibold text-gray-800">{{ svc.name }}</h3>
+          <span class="text-blue-600 font-bold text-lg">${{ "%.0f" % (svc.price / 100) }}</span>
+        </div>
+        <p class="text-gray-500 text-sm mt-1">{{ svc.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Order Form -->
+    <div id="order-form-section" class="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 hidden">
+      <h2 class="text-xl font-bold text-gray-800 mb-6">📝 Order Details</h2>
+
+      <form method="POST" action="/create-checkout-session" id="order-form">
+        <input type="hidden" name="service_type" id="service_type_input">
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Selected Service</label>
+          <div id="selected-service-label" class="bg-blue-50 border border-blue-200 text-blue-700 rounded-lg px-4 py-2 font-semibold"></div>
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Your Email <span class="text-red-500">*</span></label>
+          <input
+            type="email" id="email" name="email" required
+            placeholder="you@example.com"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+          <p class="text-xs text-gray-400 mt-1">Your finished content will be delivered here.</p>
+        </div>
+
+        <div class="mb-4">
+          <label for="topic" class="block text-sm font-medium text-gray-700 mb-1">Topic / Subject <span class="text-red-500">*</span></label>
+          <input
+            type="text" id="topic" name="topic" required
+            placeholder="e.g. 10 benefits of cold showers, Bamboo water bottle, Launch of our summer sale..."
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+        </div>
+
+        <div class="mb-4">
+          <label for="style" class="block text-sm font-medium text-gray-700 mb-1">Writing Style</label>
+          <select id="style" name="style" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="professional">Professional</option>
+            <option value="casual and friendly">Casual &amp; Friendly</option>
+            <option value="humorous and witty">Humorous &amp; Witty</option>
+            <option value="authoritative and expert">Authoritative &amp; Expert</option>
+            <option value="inspirational">Inspirational</option>
+            <option value="minimalist">Minimalist</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="details" class="block text-sm font-medium text-gray-700 mb-1">Additional Details <span class="text-gray-400">(optional)</span></label>
+          <textarea
+            id="details" name="details" rows="3"
+            placeholder="Target audience, key points to include, brand name, competitor differentiation, etc."
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+          ></textarea>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-colors text-lg flex items-center gap-2"
+          >
+            💳 Pay &amp; Get Content
+          </button>
+          <button
+            type="button"
+            onclick="cancelForm()"
+            class="text-gray-400 hover:text-gray-600 text-sm underline"
+          >
+            Cancel
+          </button>
+        </div>
+
+        <p class="text-xs text-gray-400 mt-4">🔒 Payments processed securely via Stripe. Your content arrives by email within minutes of payment.</p>
+      </form>
+    </div>
+
+    <!-- Trust Signals -->
+    <div class="grid grid-cols-3 gap-4 mt-10 text-center text-sm text-gray-500">
+      <div class="bg-white rounded-xl border p-4">
+        <div class="text-2xl mb-1">⚡</div>
+        <div class="font-semibold text-gray-700">Instant Delivery</div>
+        <div>Content emailed within minutes of payment</div>
+      </div>
+      <div class="bg-white rounded-xl border p-4">
+        <div class="text-2xl mb-1">🤖</div>
+        <div class="font-semibold text-gray-700">Claude AI</div>
+        <div>Powered by Anthropic's latest language model</div>
+      </div>
+      <div class="bg-white rounded-xl border p-4">
+        <div class="text-2xl mb-1">🔒</div>
+        <div class="font-semibold text-gray-700">Secure Payments</div>
+        <div>256-bit SSL via Stripe</div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-center text-xs text-gray-400 py-8 mt-6">
+    &copy; 2026 AI Content Studio. All rights reserved.
+  </footer>
+
+  <script>
+    const SERVICES = {{ services | tojson }};
+
+    function selectService(key) {
+      // Highlight selected card
+      document.querySelectorAll('.service-card').forEach(c => {
+        c.classList.remove('border-blue-500', 'shadow-md', 'bg-blue-50');
+        c.classList.add('border-gray-200');
+      });
+      const card = document.querySelector(`[data-key="${key}"]`);
+      card.classList.add('border-blue-500', 'shadow-md', 'bg-blue-50');
+      card.classList.remove('border-gray-200');
+
+      // Update hidden input and label
+      document.getElementById('service_type_input').value = key;
+      const svc = SERVICES[key];
+      document.getElementById('selected-service-label').textContent =
+        `${svc.name}  —  $${(svc.price / 100).toFixed(0)}`;
+
+      // Show form
+      document.getElementById('order-form-section').classList.remove('hidden');
+      document.getElementById('order-form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function cancelForm() {
+      document.getElementById('order-form-section').classList.add('hidden');
+      document.getElementById('service_type_input').value = '';
+      document.querySelectorAll('.service-card').forEach(c => {
+        c.classList.remove('border-blue-500', 'shadow-md', 'bg-blue-50');
+        c.classList.add('border-gray-200');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful — AI Content Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-200 max-w-lg w-full mx-4 p-10 text-center">
+    <div class="text-6xl mb-4">✅</div>
+    <h1 class="text-2xl font-extrabold text-gray-800 mb-2">Payment Successful!</h1>
+    <p class="text-gray-500 mb-6">
+      Your <strong>{{ service_name }}</strong> is being generated right now by Claude AI.
+      It will arrive in your inbox at <strong>{{ email }}</strong> within a few minutes.
+    </p>
+    <p class="text-xs text-gray-400 mb-8">Order ID: {{ order_id }}</p>
+    <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-xl transition-colors">
+      Order More Content
+    </a>
+    <p class="text-xs text-gray-400 mt-6">
+      Didn't receive your email? Check your spam folder or reply to your order confirmation email.
+    </p>
+  </div>
+</body>
+</html>
